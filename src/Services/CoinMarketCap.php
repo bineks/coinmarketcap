@@ -31,15 +31,15 @@ class CoinMarketCap
         return Cache::remember(
             $this->getCacheKey($method, $url, $query),
             Carbon::now()->addSeconds(self::CACHE_TIMEOUT),
-            function () use($method, $url, $query) {
+            function () use ($method, $url, $query) {
                 $client = new \GuzzleHttp\Client([
                     'base_uri'  => self::SERVICE_URL,
-                    'protocols' => 'https'
+                    'protocols' => 'https',
                 ]);
 
                 $response = $client->request($method, $url, [
                     'http_errors' => false,
-                    'query'       => $query
+                    'query'       => $query,
                 ]);
 
                 if ($response->getStatusCode() == 200) {
@@ -76,7 +76,7 @@ class CoinMarketCap
      * This  method gets cryptocurrency ticker data.
      *
      * @param int $id
-
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return null|array
@@ -93,6 +93,7 @@ class CoinMarketCap
      * example "ETH".
      *
      * @param string $symbol
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return null|array
@@ -136,6 +137,7 @@ class CoinMarketCap
      * @param string $method
      * @param string $url
      * @param array  $query
+     *
      * @return string
      */
     protected function getCacheKey(string $method, string $url, array $query = []): string

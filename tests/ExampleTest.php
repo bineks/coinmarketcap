@@ -9,5 +9,4 @@ class ExampleTest extends Orchestra\Testbench\TestCase
     {
         $this->assertTrue(true);
     }
-
 }
