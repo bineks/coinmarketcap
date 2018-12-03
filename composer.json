@@ -1,0 +1,25 @@
+{
+  "name": "bineks/coinmarketcap",
+  "description": "Integration with CoinMarketCap.com for Laravel 5.5 and later",
+  "require": {
+    "php": ">=7.0",
+    "ext-json": "*",
+    "laravel/framework": ">=5.5",
+    "guzzlehttp/guzzle": "6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bineks\\Coinmarketcap\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bineks\\Coinmarketcap\\Providers\\CoinMarketCapServiceProvider"
+      ],
+      "aliases": {
+        "CoinMarketCap": "Bineks\\Coinmarketcap\\Facades\\CoinMarketCapFacade"
+      }
+    }
+  }
+}
