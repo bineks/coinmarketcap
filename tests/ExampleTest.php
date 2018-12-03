@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class ExampleTest
+ * Class ExampleTest.
  */
 class ExampleTest extends Orchestra\Testbench\TestCase
 {
@@ -9,4 +9,5 @@ class ExampleTest extends Orchestra\Testbench\TestCase
     {
         $this->assertTrue(true);
     }
+
 }

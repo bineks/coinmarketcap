@@ -6,8 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 /**
- * Class CoinMarketCap
- * @package Bineks\coinmarketcap\Services
+ * Class CoinMarketCap.
  */
 class CoinMarketCap
 {
@@ -20,11 +19,11 @@ class CoinMarketCap
 
 
     /**
-     * Send request to CoinMarketCap.com
+     * Send request to CoinMarketCap.com.
      *
      * @param string $method
      * @param string $url
-     * @param array $query
+     * @param array  $query
      * @return null|mixed
      */
     public function doRequest(string $method, string $url, array $query = [])
@@ -32,15 +31,15 @@ class CoinMarketCap
         return Cache::remember(
             $this->getCacheKey($method, $url, $query),
             Carbon::now()->addSeconds(self::CACHE_TIMEOUT),
-            function() use($method, $url, $query) {
+            function () use($method, $url, $query) {
                 $client = new \GuzzleHttp\Client([
-                    'base_uri' => self::SERVICE_URL,
+                    'base_uri'  => self::SERVICE_URL,
                     'protocols' => 'https'
                 ]);
 
                 $response = $client->request($method, $url, [
                     'http_errors' => false,
-                    'query' => $query
+                    'query'       => $query
                 ]);
 
                 if ($response->getStatusCode() == 200) {
@@ -51,7 +50,6 @@ class CoinMarketCap
             });
     }
 
-
     /**
      * This method gets cryptocurrency ticker data in order of rank.
      * The maximum number of results per call is 100.
@@ -60,26 +58,28 @@ class CoinMarketCap
      * @param int $start
      * @param int $limit
      *
-     * @return null|array
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return null|array
      */
     public function getTicker(int $start = 1, int $limit = 100): ?array
     {
         $response = $this->doRequest('GET', 'ticker', [
             'start' => $start,
-            'limit' => $limit
+            'limit' => $limit,
         ]);
 
         return array_get($response, 'data');
     }
 
-
     /**
      * This  method gets cryptocurrency ticker data.
      *
      * @param int $id
-     * @return null|array
+
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return null|array
      */
     public function getTickerById(int $id): ?array
     {
@@ -88,14 +88,14 @@ class CoinMarketCap
         return array_get($response, 'data');
     }
 
-
     /**
      * This methods gets cryptocurrency ticker data.
-     * example "ETH"
+     * example "ETH".
      *
      * @param string $symbol
-     * @return null|array
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return null|array
      */
     public function getTickerBySymbol(string $symbol): ?array
     {
@@ -114,13 +114,13 @@ class CoinMarketCap
         return null;
     }
 
-
     /**
      * This methods gets all active cryptocurrency listings in one call.
      * Use the "id" field on the Ticker endpoint to query more information on a specific cryptocurrency.
      *
-     * @return null|array
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return null|array
      */
     public function getListings(): ?array
     {
@@ -131,16 +131,17 @@ class CoinMarketCap
 
 
     /**
-     * Generate Cache key
+     * Generate Cache key.
      *
      * @param string $method
      * @param string $url
-     * @param array $query
+     * @param array  $query
      * @return string
      */
     protected function getCacheKey(string $method, string $url, array $query = []): string
     {
         $query = json_encode($query);
+
         return "coinmarkeycap:{$url}:{$method}:{$query}";
     }
 }

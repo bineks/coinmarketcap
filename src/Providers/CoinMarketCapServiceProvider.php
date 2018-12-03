@@ -7,8 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 
 /**
- * Class CoinMarketCapServiceProvider
- * @package Bineks\Coinmarketcap\Providers
+ * Class CoinMarketCapServiceProvider.
  */
 class CoinMarketCapServiceProvider extends ServiceProvider
 {
@@ -22,7 +21,6 @@ class CoinMarketCapServiceProvider extends ServiceProvider
         //
     }
 
-
     /**
      * Register the application services.
      *
@@ -30,7 +28,7 @@ class CoinMarketCapServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('CoinMarketCap', function($app) {
+        $this->app->bind('CoinMarketCap', function ($app) {
             return new CoinMarketCap($app);
         });
     }

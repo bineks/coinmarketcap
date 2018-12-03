@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 
 /**
- * Class CoinMarketCapFacade
- * @package Bineks\Coinmarketcap\Facades
+ * Class CoinMarketCapFacade.
  */
 class CoinMarketCapFacade extends Facade
 {
