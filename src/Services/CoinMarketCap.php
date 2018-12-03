@@ -17,13 +17,13 @@ class CoinMarketCap
     const CACHE_TIMEOUT = 5; //@TODO @FGT services config
     //@TODO @FGT cache prefix to config
 
-
     /**
      * Send request to CoinMarketCap.com.
      *
      * @param string $method
      * @param string $url
      * @param array  $query
+     *
      * @return null|mixed
      */
     public function doRequest(string $method, string $url, array $query = [])
@@ -45,8 +45,6 @@ class CoinMarketCap
                 if ($response->getStatusCode() == 200) {
                     return json_decode($response->getBody()->getContents(), true);
                 }
-
-                return null;
             });
     }
 
@@ -129,7 +127,6 @@ class CoinMarketCap
 
         return array_get($response, 'data');
     }
-
 
     /**
      * Generate Cache key.

@@ -5,7 +5,6 @@ namespace Bineks\Coinmarketcap\Providers;
 use Bineks\Coinmarketcap\Services\CoinMarketCap;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class CoinMarketCapServiceProvider.
  */
