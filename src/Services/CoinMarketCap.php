@@ -13,10 +13,6 @@ class CoinMarketCap
     /** @var string */
     const SERVICE_URL = 'https://api.coinmarketcap.com/v2/';
 
-    /** @var int */
-    const CACHE_TIMEOUT = 5; //@TODO @FGT services config
-    //@TODO @FGT cache prefix to config
-
     /**
      * Send request to CoinMarketCap.com.
      *
@@ -30,7 +26,7 @@ class CoinMarketCap
     {
         return Cache::remember(
             $this->getCacheKey($method, $url, $query),
-            Carbon::now()->addSeconds(self::CACHE_TIMEOUT),
+            Carbon::now()->addSeconds(config('services.coinmarketcap.cache.timeout', 5)),
             function () use ($method, $url, $query) {
                 $client = new \GuzzleHttp\Client([
                     'base_uri'  => self::SERVICE_URL,
@@ -140,7 +136,8 @@ class CoinMarketCap
     protected function getCacheKey(string $method, string $url, array $query = []): string
     {
         $query = json_encode($query);
+        $prefix = config('services.coinmarketcap.cache.prefix', 'coinmarkeycap');
 
-        return "coinmarkeycap:{$url}:{$method}:{$query}";
+        return "{$prefix}:{$url}:{$method}:{$query}";
     }
 }

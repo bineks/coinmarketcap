@@ -12,6 +12,18 @@
 $ composer require "bineks/coinmarketcap"
 ```
 
+### Config (optional) file 'config/services.php' 
+```sh
+[
+  'coinmarketcap' => [
+          'cache' => [
+            'timeout' => 5, //seconds by default
+            'prefix'  => 'coinmarkeycap' //default
+          ]
+        ]
+]
+```
+
 ### Using
 
 ```sh
