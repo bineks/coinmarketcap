@@ -16,11 +16,11 @@ $ composer require "bineks/coinmarketcap"
 ```sh
 [
   'coinmarketcap' => [
-          'cache' => [
-            'timeout' => 5, //seconds by default
-            'prefix'  => 'coinmarkeycap' //default
-          ]
-        ]
+    'cache' => [
+      'timeout' => 5, //seconds by default
+      'prefix'  => 'coinmarkeycap' //default
+    ]
+  ]
 ]
 ```
 
