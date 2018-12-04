@@ -17,7 +17,7 @@ $ composer require "bineks/coinmarketcap"
 [
   'coinmarketcap' => [
     'cache' => [
-      'timeout' => 5, //seconds by default
+      'timeout' => 5,              //seconds by default
       'prefix'  => 'coinmarkeycap' //default
     ]
   ]
